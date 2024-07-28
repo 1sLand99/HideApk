@@ -181,7 +181,7 @@ public:
         return needed_by_;
     }
 
-    void soload(std::vector<LoadTask *> &load_tasks, JNIEnv *pEnv);
+    void soload();
 
     void hack();
 

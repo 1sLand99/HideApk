@@ -159,7 +159,7 @@ jobject hideLoadApkModule(JNIEnv *env, mz_zip_archive& zip_archive){
 
 
         for (auto&& task : load_tasks) {
-            task->soload(load_tasks, env);
+            task->soload();
             call_JNI_OnLoad(task->get_soinfo(),env, g_currentDexLoad);
             task->hack();
             delete task;
@@ -302,7 +302,7 @@ void *hide_dlopen(   const char *file_data){
             si->set_soname(elf_reader.get_string(d->d_un.d_val));
         }
     }
-
+    task->soload();
     task->hack();
     soinfo *ret_si = task->get_soinfo();
     delete task;
